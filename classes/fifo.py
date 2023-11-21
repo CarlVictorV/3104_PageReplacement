@@ -43,9 +43,6 @@ class FIFO(p.Page):
 
 
 def main():
-    # page_sequence = [1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5]
-    # frame_count = 3
-    # page_count = 12
     page_sequence = [7,0,1,2,0,3,4,2,3,0,3,2,1,2,0,1,7]
     frame_count = 3
     page_count = 17

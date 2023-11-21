@@ -42,6 +42,9 @@ class LFU(p.Page):
         for frame in self.frames:
             if frame.get_page_frequency() < least_frequently_used.get_page_frequency():
                 least_frequently_used = frame
+            elif frame.get_page_frequency() == least_frequently_used.get_page_frequency():
+                if frame.get_frame_current_page_birth() < least_frequently_used.get_frame_current_page_birth():
+                    least_frequently_used = frame
         return least_frequently_used.get_frame_id()
 
     def print_lfu_table(self):
@@ -74,13 +77,16 @@ class LFU_Frames(f.Frame):
         self.page_frequency = 0
         self.set_current_event(index, EventType.PAGE_REPLACEMENT, page)
 
+
 def main():
-    # page_sequence = [1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5]
+    # page_sequence = [7, 0, 1, 2, 0, 3, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7]
     # frame_count = 3
-    # page_count = 12
-    page_sequence = [7, 0, 1, 2, 0, 3, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7]
+    # page_count = 17
+
+    page_sequence = [7, 0, 1, 2, 0, 3, 0, 4,
+                     2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
     frame_count = 3
-    page_count = 17
+    page_count = 20
     lfu = LFU(page_sequence, frame_count, page_count)
 
 

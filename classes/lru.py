@@ -42,6 +42,9 @@ class LRU(p.Page):
         for frame in self.frames:
             if frame.get_last_used() < least_recently_used.get_last_used():
                 least_recently_used = frame
+            elif frame.get_last_used() == least_recently_used.get_last_used():
+                if frame.get_frame_current_page_birth() < least_recently_used.get_frame_current_page_birth():
+                    least_recently_used = frame
         return least_recently_used.get_frame_id()
 
     def print_lru_table(self):
@@ -81,12 +84,14 @@ class LRU_Frames(f.Frame):
 
 
 def main():
-    # page_sequence = [1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5]
+    # page_sequence = [7, 0, 1, 2, 0, 3, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7]
     # frame_count = 3
-    # page_count = 12
-    page_sequence = [7, 0, 1, 2, 0, 3, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7]
+    # page_count = 17
+
+    page_sequence = [7, 0, 1, 2, 0, 3, 0, 4,
+                     2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
     frame_count = 3
-    page_count = 17
+    page_count = 20
     lru = LRU(page_sequence, frame_count, page_count)
 
 
