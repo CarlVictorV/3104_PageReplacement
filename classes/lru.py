@@ -2,6 +2,7 @@ from EventType import EventType
 import page as p
 import frames as f
 
+
 class LRU(p.Page):
     def __init__(self, page_sequence, frame_count, page_count):
         super().__init__(page_sequence, frame_count, page_count)
@@ -42,10 +43,6 @@ class LRU(p.Page):
             if frame.get_last_used() < least_recently_used.get_last_used():
                 least_recently_used = frame
         return least_recently_used.get_frame_id()
-    
-    
-
-
 
     def print_lru_table(self):
         """
@@ -53,27 +50,27 @@ class LRU(p.Page):
         """
         print(f"+------------+")
         print(f"| LRU TABLE  |", )
-        
+
         self.print_sequence()
         self.print_frames()
         self.print_rates()
+
 
 class LRU_Frames(f.Frame):
     def __init__(self, frame_count, event_count):
         super().__init__(frame_count, event_count)
         self.last_used = -1
 
-    # For last used variable
+    # Override
     def update_last_used(self, index):
         self.last_used = index
 
     def get_last_used(self):
         return self.last_used
-    
+
     def set_last_used(self, last_used):
         self.last_used = last_used
 
-    # Override
     # Page Replacement (This situation means this frame's page is being replaced)
     def replace_page(self, page, index):
         self.frame_current_page = page
@@ -81,15 +78,17 @@ class LRU_Frames(f.Frame):
         self.frame_current_page_birth = index
         self.last_used = index
         self.set_current_event(index, EventType.PAGE_REPLACEMENT, page)
-    
+
+
 def main():
     # page_sequence = [1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5]
     # frame_count = 3
     # page_count = 12
-    page_sequence = [7,0,1,2,0,3,4,2,3,0,3,2,1,2,0,1,7]
+    page_sequence = [7, 0, 1, 2, 0, 3, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7]
     frame_count = 3
     page_count = 17
     lru = LRU(page_sequence, frame_count, page_count)
+
 
 if __name__ == "__main__":
     main()

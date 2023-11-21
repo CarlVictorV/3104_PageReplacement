@@ -186,20 +186,3 @@ class Page:
         self.print_sequence()
         self.print_frames()
         self.print_rates()
-
-
-def test_print_sequence():
-    page_sequence = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-    frame_count = 5
-    page_count = 17
-    page = Page(page_sequence, frame_count, page_count)
-    page.set_page_faults(17)
-    page.set_page_hits(0)
-    page.calculate_rates()
-    page.set_page_hit_rate(0.54536)
-    page.print_table()
-    
-
-
-if __name__ == "__main__":
-    test_print_sequence()
