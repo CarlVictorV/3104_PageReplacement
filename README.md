@@ -36,12 +36,16 @@ Develop a memory management simulator to simulate various Page Replacement Algor
 **Number of Page References**:
 - Number of page references in the sequence. 
 <br>
+
 **Sequence of Page References**:
 <br>
+
 - Sequence of page references (e.g., 1 2 3 4 1 2 5 1 2 3).
 <br>
+
 **Number of Frames in Physical Memory**:
 <br>
+
 - Number of frames in physical memory.
 
 **Example:**
