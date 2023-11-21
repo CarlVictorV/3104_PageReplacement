@@ -97,13 +97,13 @@ class Page:
     # Page Hit
     def page_hit_events(self, index):
         for frame in self.frames:
-            frame.set_current_event_as_hit()
+            frame.page_hit(index)
         self.increment_page_hits()
 
     # Page Fault
     def page_fault_events(self, index):
         for frame in self.frames:
-            frame.set_current_event_as_fault()
+            frame.page_fault(index)
         self.increment_page_faults()
 
     # Page Replacement
@@ -116,7 +116,7 @@ class Page:
         for frame in self.frames:
             if frame.get_frame_current_page_birth() < oldest_page.get_frame_current_page_birth():
                 oldest_page = frame
-        return oldest_page
+        return oldest_page.get_frame_id()
 
     # Print methods
 
@@ -136,17 +136,18 @@ class Page:
             print(f"\n| Frame {frame.get_frame_id()+1:<3}  |", end="")
 
             for event in frame.events:
-                if (event.get_event_type() == f.EventType.NOT_USED):
-                    print(f" emt |", end="")
+                if (event.get_event_type() == f.EventType.NOT_USED or event.get_event_data() == -1):
+                    print(f"     |", end="")
                 else:
-                    print(f"  {event.get_event_data():<3}|", end="")
+                    event_data = str(event.get_event_data())
+                    print(f"  {event_data:<3}|", end="")
             print(f"\n+------------+", end="")
             for event in frame.events:
                 print("-----+", end="")
 
         print(f"\n| Page F: {self.get_page_faults():<2} |", end="")
         for events in self.frames[0].events:
-            if (events.get_event_type() == f.EventType.PAGE_FAULT):
+            if (events.get_event_type() == f.EventType.PAGE_FAULT or events.get_event_type() == f.EventType.PAGE_REPLACEMENT):
                 print(f"  F  |", end="")
             else:
                 print(f"     |", end="")

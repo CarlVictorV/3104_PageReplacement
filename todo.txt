@@ -1,0 +1,16 @@
+MAIN PRIORITY
+```
+[X] FIFO
+[ ] LRU
+[ ] LFU
+[ ] Optimal
+```
+SECONDARY PRIORITY
+```
+[X] Display
+[ ] File Input
+[ ] Mac Support
+[X] Windows Support
+[ ] Menu Style
+```
+

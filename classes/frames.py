@@ -74,16 +74,16 @@ class Frame:
         self.frame_current_page = page
         self.frame_current_page_age = 0
         self.frame_current_page_birth = index
-        self.set_current_event(index, Event.EventType.PAGE_REPLACEMENT, page)
+        self.set_current_event(index, EventType.PAGE_REPLACEMENT, page)
 
     # Page Hit (This situation means this frame's page or a different frame's page is being hit)
     def page_hit(self, index):
-        self.set_current_event(index, Event.EventType.PAGE_HIT, self.get_frame_current_page)
+        self.set_current_event(index, EventType.PAGE_HIT, self.get_frame_current_page())
         self.increment_current_page_age()
 
     # Page Fault (This situation means a different frame is being replaced but this frame's page is not being replaced)
     def page_fault(self, index):
-        self.set_current_event(index, Event.EventType.PAGE_FAULT, self.get_frame_current_page)
+        self.set_current_event(index, EventType.PAGE_FAULT, self.get_frame_current_page())
         self.increment_current_page_age()
 
     
