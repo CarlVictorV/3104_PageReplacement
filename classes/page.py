@@ -17,15 +17,6 @@ class Page:
         self.page_hit_rate = 0.0
 
     # Getters
-    def get_page_sequence(self):
-        return self.page_sequence
-
-    def get_page_count(self):
-        return self.page_count
-
-    def get_frame_count(self):
-        return self.frame_count
-
     def get_page_faults(self):
         return self.page_faults
 
@@ -37,28 +28,6 @@ class Page:
 
     def get_page_hit_rate(self):
         return self.page_hit_rate
-
-    # Setters
-    def set_page_sequence(self, page_sequence):
-        self.page_sequence = page_sequence
-
-    def set_page_count(self, page_count):
-        self.page_count = page_count
-
-    def set_frame_count(self, frame_count):
-        self.frame_count = frame_count
-
-    def set_page_faults(self, page_faults):
-        self.page_faults = page_faults
-
-    def set_page_hits(self, page_hits):
-        self.page_hits = page_hits
-
-    def set_page_fault_rate(self, page_fault_rate):
-        self.page_fault_rate = page_fault_rate
-
-    def set_page_hit_rate(self, page_hit_rate):
-        self.page_hit_rate = page_hit_rate
 
     # Unique methods
     def increment_page_faults(self):
@@ -72,7 +41,6 @@ class Page:
         self.page_hit_rate = self.page_hits / len(self.page_sequence)
 
     # Methods for Frames control
-
     # Check every frame for same page
     def check_for_page(self, page):
         for frame in self.frames:
@@ -93,11 +61,11 @@ class Page:
             if frame.is_empty():
                 frame.replace_page(page, index)
                 return
-            
+
     # Find the frame with the same page and return its index
     def find_page(self, page):
         for frame in self.frames:
-            if frame.is_equal_to_page_number(page):
+            if frame.is_equal_to(page):
                 return frame.get_frame_id()
         return -1
 
@@ -171,7 +139,6 @@ class Page:
         for event in self.frames[0].events:
             print("-----+", end="")
 
-
     def print_rates(self):
         fault_rate = "{:.2f}%".format(self.get_page_fault_rate()*100)
         hits_rate = "{:.2f}%".format(self.get_page_hit_rate() * 100)
@@ -179,10 +146,4 @@ class Page:
         print(f"\n+------------------------+", end="")
         print(f"\n| Hits  Rate: {hits_rate:>10} |", end="")
         print(f"\n+------------------------+", end="")
-
-
-    def print_table(self):
-        print("TABLE")
-        self.print_sequence()
-        self.print_frames()
-        self.print_rates()
+        print(f"\n")

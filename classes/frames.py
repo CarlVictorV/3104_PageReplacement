@@ -18,36 +18,15 @@ class Frame:
     def get_frame_id(self):
         return self.frame_id
 
-    def get_event_count(self):
-        return self.event_count
-
-    def get_events(self):
-        return self.events
-
     def get_frame_current_page(self):
         return self.frame_current_page
 
     def get_frame_current_page_birth(self):
         return self.frame_current_page_birth
 
-    # Setters
-    def set_frame_id(self, frame_id):
-        self.frame_id = frame_id
-
-    def set_event_count(self, event_count):
-        self.event_count = event_count
-
-    def set_events(self, events):
-        self.events = events
-
-    def set_frame_current_page(self, frame_current_page):
-        self.frame_current_page = frame_current_page
-
-    def set_frame_current_page_birth(self, frame_current_page_birth):
-        self.frame_current_page_birth = frame_current_page_birth
-
     # Unique methods
     # Check if frame is empty
+
     def is_empty(self):
         return self.frame_current_page == -1
 
@@ -78,11 +57,6 @@ class Frame:
                                self.get_frame_current_page())
 
     # Methods associated with events
-    # Set Next Event
-
-    def setup_next_event(self, index):
-        self.events[index+1].copy_event(self.events[index])
-
     # Set Current Event Type
     def set_current_event_type(self, index, event_type):
         self.events[index].set_event_type(event_type)
