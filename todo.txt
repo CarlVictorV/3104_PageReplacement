@@ -1,7 +1,7 @@
 MAIN PRIORITY
 ```
 [X] FIFO
-[ ] LRU
+[X] LRU
 [ ] LFU
 [ ] Optimal
 ```

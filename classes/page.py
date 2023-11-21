@@ -93,6 +93,13 @@ class Page:
             if frame.is_empty():
                 frame.replace_page(page, index)
                 return
+            
+    # Find the frame with the same page and return its index
+    def find_page(self, page):
+        for frame in self.frames:
+            if frame.is_equal_to_page_number(page):
+                return frame.get_frame_id()
+        return -1
 
     # Page Hit
     def page_hit_events(self, index):

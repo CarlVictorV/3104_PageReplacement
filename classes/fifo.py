@@ -1,6 +1,5 @@
 import page as p
 
-
 class FIFO(p.Page):
     def __init__(self, page_sequence, frame_count, page_count):
         super().__init__(page_sequence, frame_count, page_count)
