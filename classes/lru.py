@@ -42,9 +42,9 @@ class LRU(p.Page):
         for frame in self.frames:
             if frame.get_last_used() < least_recently_used.get_last_used():
                 least_recently_used = frame
-            elif frame.get_last_used() == least_recently_used.get_last_used():
-                if frame.get_frame_current_page_birth() < least_recently_used.get_frame_current_page_birth():
-                    least_recently_used = frame
+            # elif frame.get_last_used() == least_recently_used.get_last_used():
+            #     if frame.get_frame_current_page_birth() < least_recently_used.get_frame_current_page_birth():
+            #         least_recently_used = frame
         return least_recently_used.get_frame_id()
 
     def print_lru_table(self):

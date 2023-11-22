@@ -94,7 +94,6 @@ class Page:
         return oldest_page.get_frame_id()
 
     # Print methods
-
     def print_sequence(self):
         print(f"+------------+", end="")
         for page in self.page_sequence:
