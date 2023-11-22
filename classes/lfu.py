@@ -1,6 +1,6 @@
-from EventType import EventType
 import page as p
 import frames as f
+from EventType import EventType
 
 
 class LFU(p.Page):

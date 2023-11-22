@@ -3,7 +3,7 @@ MAIN PRIORITY
 [X] FIFO
 [X] LRU
 [X] LFU
-[ ] Optimal
+[X] Optimal
 ```
 SECONDARY PRIORITY
 ```
