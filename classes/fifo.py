@@ -42,11 +42,11 @@ class FIFO(p.Page):
         self.print_rates()
 
 
-def main():
-    page_sequence = [7,0,1,2,0,3,4,2,3,0,3,2,1,2,0,1,7]
-    frame_count = 3
-    page_count = 17
-    fifo = FIFO(page_sequence, frame_count, page_count)
+# def main():
+#     page_sequence = [7,0,1,2,0,3,4,2,3,0,3,2,1,2,0,1,7]
+#     frame_count = 3
+#     page_count = 17
+#     fifo = FIFO(page_sequence, frame_count, page_count)
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

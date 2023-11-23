@@ -111,7 +111,7 @@ class Page:
 
             for event in frame.events:
                 if (event.get_event_type() == f.EventType.NOT_USED or event.get_event_data() == -1):
-                    print(f"     |", end="")
+                    print(f"  -  |", end="")
                 else:
                     event_data = str(event.get_event_data())
                     print(f"  {event_data:<3}|", end="")
@@ -124,7 +124,7 @@ class Page:
             if (events.get_event_type() == f.EventType.PAGE_FAULT or events.get_event_type() == f.EventType.PAGE_REPLACEMENT):
                 print(f"  F  |", end="")
             else:
-                print(f"     |", end="")
+                print(f"  -  |", end="")
         print(f"\n+------------+", end="")
         for event in self.frames[0].events:
             print("-----+", end="")
@@ -133,7 +133,7 @@ class Page:
             if (events.get_event_type() == f.EventType.PAGE_HIT):
                 print(f"  H  |", end="")
             else:
-                print(f"     |", end="")
+                print(f"  -  |", end="")
         print(f"\n+------------+", end="")
         for event in self.frames[0].events:
             print("-----+", end="")
@@ -141,8 +141,9 @@ class Page:
     def print_rates(self):
         fault_rate = "{:.2f}%".format(self.get_page_fault_rate()*100)
         hits_rate = "{:.2f}%".format(self.get_page_hit_rate() * 100)
-        print(f"\n| Fault Rate: {fault_rate:>10} |", end="")
+        print(f"\n|  Fault Rate: {fault_rate:>9} |", end="")
         print(f"\n+------------------------+", end="")
-        print(f"\n| Hits  Rate: {hits_rate:>10} |", end="")
+        print(f"\n|  Hits  Rate: {hits_rate:>9} |", end="")
         print(f"\n+------------------------+", end="")
         print(f"\n")
+

@@ -8,10 +8,8 @@ MAIN PRIORITY
 SECONDARY PRIORITY
 ```
 [X] Display
-[ ] File Input
-[ ] Mac Support
+[X] File Input
+[X] Mac Support
 [X] Windows Support
-[ ] Menu Style
+[X] Menu Style
 ```
-
-https://www.youtube.com/watch?v=cjWnEtnKVGM
