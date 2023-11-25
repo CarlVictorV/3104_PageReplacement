@@ -108,21 +108,30 @@ class Page:
     def print_frames(self):
         for frame in self.frames:
             print(f"\n| Frame {frame.get_frame_id()+1:<3}  |", end="")
-
+            i = 0
             for event in frame.events:
                 if (event.get_event_type() == f.EventType.NOT_USED or event.get_event_data() == -1):
                     print(f"  -  |", end="")
                 else:
                     event_data = str(event.get_event_data())
-                    print(f"  {event_data:<3}|", end="")
+                    if event.get_event_data() == self.page_sequence[i]:
+                        if event.get_event_type() == f.EventType.PAGE_HIT:
+                            print(f" \033[92m {event_data:<3}\033[0m|", end="")
+                        elif event.get_event_type() == f.EventType.PAGE_FAULT or event.get_event_type() == f.EventType.PAGE_REPLACEMENT:
+                            print(f" \033[91m {event_data:<3}\033[0m|", end="")
+                    else:
+                        event_data = str(event.get_event_data())
+                        print(f"  \033[0m{event_data:<3}\033[0m|", end="")
+                    
+                i += 1
             print(f"\n+------------+", end="")
             for event in frame.events:
                 print("-----+", end="")
 
         print(f"\n| Page F: {self.get_page_faults():<2} |", end="")
         for events in self.frames[0].events:
-            if (events.get_event_type() == f.EventType.PAGE_FAULT or events.get_event_type() == f.EventType.PAGE_REPLACEMENT):
-                print(f"  F  |", end="")
+            if events.get_event_type() == f.EventType.PAGE_FAULT or events.get_event_type() == f.EventType.PAGE_REPLACEMENT:
+                print(f" \033[91m F \033[0m |", end="")
             else:
                 print(f"  -  |", end="")
         print(f"\n+------------+", end="")
@@ -130,8 +139,8 @@ class Page:
             print("-----+", end="")
         print(f"\n| Page H: {self.get_page_hits():<2} |", end="")
         for events in self.frames[0].events:
-            if (events.get_event_type() == f.EventType.PAGE_HIT):
-                print(f"  H  |", end="")
+            if events.get_event_type() == f.EventType.PAGE_HIT:
+                print(f" \033[92m H \033[0m |", end="")
             else:
                 print(f"  -  |", end="")
         print(f"\n+------------+", end="")
@@ -146,4 +155,3 @@ class Page:
         print(f"\n|  Hits  Rate: {hits_rate:>9} |", end="")
         print(f"\n+------------------------+", end="")
         print(f"\n")
-
