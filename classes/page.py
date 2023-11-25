@@ -98,9 +98,9 @@ class Page:
         print(f"+------------+", end="")
         for page in self.page_sequence:
             print("-----+", end="")
-        print(f"\n| PCount: {self.page_count:<2} |", end="")
+        print(f"\n| \033[94mPCount: {self.page_count:<2}\033[0m |", end="")
         for page in self.page_sequence:
-            print(f"  {page:<3}|", end="")
+            print(f"  \033[94m{page:<3}\033[0m|", end="")
         print(f"\n+------------+", end="")
         for page in self.page_sequence:
             print("-----+", end="")
@@ -128,7 +128,7 @@ class Page:
             for event in frame.events:
                 print("-----+", end="")
 
-        print(f"\n| Page F: {self.get_page_faults():<2} |", end="")
+        print(f"\n| \033[91mPage F: {self.get_page_faults():<2}\033[0m |", end="")
         for events in self.frames[0].events:
             if events.get_event_type() == f.EventType.PAGE_FAULT or events.get_event_type() == f.EventType.PAGE_REPLACEMENT:
                 print(f" \033[91m F \033[0m |", end="")
@@ -137,7 +137,7 @@ class Page:
         print(f"\n+------------+", end="")
         for event in self.frames[0].events:
             print("-----+", end="")
-        print(f"\n| Page H: {self.get_page_hits():<2} |", end="")
+        print(f"\n| \033[92mPage H: {self.get_page_hits():<2}\033[0m |", end="")
         for events in self.frames[0].events:
             if events.get_event_type() == f.EventType.PAGE_HIT:
                 print(f" \033[92m H \033[0m |", end="")
@@ -150,8 +150,8 @@ class Page:
     def print_rates(self):
         fault_rate = "{:.2f}%".format(self.get_page_fault_rate()*100)
         hits_rate = "{:.2f}%".format(self.get_page_hit_rate() * 100)
-        print(f"\n|  Fault Rate: {fault_rate:>9} |", end="")
+        print(f"\n|  \033[91mFault Rate: {fault_rate:>9}\033[0m |", end="")
         print(f"\n+------------------------+", end="")
-        print(f"\n|  Hits  Rate: {hits_rate:>9} |", end="")
+        print(f"\n|  \033[92mHits  Rate: {hits_rate:>9}\033[0m |", end="")
         print(f"\n+------------------------+", end="")
         print(f"\n")
