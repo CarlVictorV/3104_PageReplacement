@@ -15,10 +15,10 @@ def menu():
     print('+-------------------------------------+')
     print('|--- *Page Replacement Simulation* ---|')
     print('+-------------------------------------+\n')
-    print("[1] FIFO")
-    print("[2] LRU")
-    print("[3] LFU")
-    print("[4] Optimal")
+    print("[1] FIFO - First In First Out")
+    print("[2] LRU - Least Recently Used")
+    print("[3] LFU - Least Frequently Used")
+    print("[4] Optimal\n")
     print("[0] Exit")
     print()
 
@@ -48,6 +48,7 @@ def main():
     }
 
     while True:
+        clear()
         menu()
         choice = input("Enter choice: ")
         print()
@@ -59,12 +60,18 @@ def main():
 
         algorithm = algorithms.get(choice)
         if algorithm:
-            clear()
-            execute_algorithm(algorithm)
+            try:
+                clear()
+                execute_algorithm(algorithm)
+                input("\nPress Enter to return to the menu...")
+            except Exception as e:
+                clear()
+                print(f"An error occurred: {str(e)}")
+                input("\nPress Enter to continue...")
         else:
             clear()
-            print("Invalid input. Please try again.")
-            print()
+            print("Invalid input. Please choose a valid option.")
+            input("\nPress Enter to continue...")
 
 
 if __name__ == "__main__":
